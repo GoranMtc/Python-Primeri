@@ -1,1 +1,105 @@
-#Lists
+
+
+#initiate empty list
+List1 = []
+
+#append element
+List1.append( 1 )
+
+#append element
+List1.append( 2 )
+
+#append nested list
+List1.append( [3,4,5] )
+
+#print all elements from list 
+print( List1 )
+
+#print third element from list
+print( List1[2] )
+
+#print third element from nested list at thir position
+print( List1[2][2] )
+
+#print first element from back
+print( List1[-1] ) 
+
+#print second element from back
+print( List1[-2] )
+
+#print length of list, number of elements
+print( len(List1) )
+
+#populate List with String split
+string : str = input( "add elements to list, separator -: ")
+List1.append( string.split("-") )
+print( List1 ) 
+
+#list from map
+
+#populate list from for loop
+List3 = []
+for i in range(1, 4): 
+    List3.append(i) 
+print( List3 )
+
+#
+List4 = []
+List4.append( List3 )
+print( List4 )
+
+#
+List5 = []
+List5.insert(1,2)
+List5.insert(0,1)
+List5.insert(-1,6)
+print( List5 ) 
+ 
+#
+List6 = []
+List6.extend( "a-b-c-d".split("-") )
+print( List6 )
+
+#
+List7=[1,2,3,4,5]
+List7.remove(2)
+print(List7)
+
+#
+print(List7.pop(2))
+print(List7)
+
+#
+print( List7.clear())
+
+#
+List8 = [1,2,3,4,5,6,7,6,5]
+List8.sort(reverse=True)
+print( List8 )
+#
+print( List8.count(5) )
+
+#
+from collections import deque
+
+#deque
+d = deque(['ABC','DEF','IJK'])
+d.append('LMN')
+d.append('OPQ')
+print(d)
+
+d.popleft()
+print(d)
+
+d.popleft()
+print(d)
+
+
+#lambda
+cubes = list(map(lambda z: z**3, range(1,4)))
+print( cubes )
+
+#del
+List9 = [1,2,3,4,5,6,7,8,9]
+del List9[2:3]
+print( List9 )
