@@ -1,4 +1,4 @@
-import FileCheck.py
+import FileCheck as FileCheck
 			
 # class for starting process		
 class Main:
@@ -8,10 +8,10 @@ class Main:
 		pass		
 		
 	def main( self ):
-		#logovanje start
+		fc = FileCheck.FileCheck()
+		fc.mainLoop()
 		pass
-
-
-fc = FileCheck()
-fc.mainLoop()
+	
+main = Main()	
+main.main()
 
