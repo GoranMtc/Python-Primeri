@@ -1,0 +1,64 @@
+from abc import ABC, abstractmethod
+
+class C1:  
+	def __init__(self):
+		print("C1 init")
+
+  public method
+	def method1(self):
+		print("=> method1 from C1")
+		self.x = 1
+		print( self.x )
+
+  #protected method
+	def _method2(self):
+		print("=> _method2 from C1")
+
+  #private method
+	def __method3(self):
+		print("=> __method3 from C1")
+
+	def method3(self):
+		self.__method3()
+
+#class inherits class C1
+class C2(C1):
+	
+	def __init__(self):
+		super().__init__()
+		print("C2 init")
+		
+	def method2(self):
+		print("=> method2 from C2")
+		self.y = 2
+		print( self.y )
+
+#abstract class
+class C3(ABC):
+  @abstractmethod
+	def method3(self):
+		pass
+
+#composite inheritance
+class C4(C3,C2):
+	def method3(self):
+		print("=> method3 from C4")
+
+	def method1(self):
+		print("=> method1 from C4")
+		super().method1()
+
+c1=C1()
+
+c2 = C2()
+c2.method1()
+c2.method2()
+
+c4 = C4()
+c4.method3()
+c4.method1()
+
+c4._method2()
+#c4.__method3() -- ne moze
+#c1.__method3() -- ne moze
+c1.method3()
