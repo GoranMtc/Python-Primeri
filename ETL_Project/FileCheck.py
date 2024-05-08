@@ -1,4 +1,4 @@
-import FileProcess
+import FileProcess as FileProcess
 import os
 import time
 
@@ -42,6 +42,7 @@ class FileCheck:
 			
 			#check for file in folder
 			self.filesList = os.listdir( self.path )
+			self.filesList.remove( 'Processed_Files' )
 			
 			if len(self.filesList) > 0:
 				
@@ -52,7 +53,7 @@ class FileCheck:
 					self.currentFileName = str( self.filesList[0] )	
 					
 					#init class for processing file
-					fp = FileProcess( self.path, self.currentFileName )
+					fp = FileProcess.FileProcess( self.path, self.currentFileName )
 
 					#start processing of files one by one
 					fp.processFile()
