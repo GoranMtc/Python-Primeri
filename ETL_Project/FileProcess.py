@@ -1,5 +1,6 @@
 from pathlib import Path		
 
+
 #class for processing of one file
 class FileProcess:
 	
