@@ -13,7 +13,7 @@ class FileCheck:
 		self.defaultCheckTimeInterval : int = 300 # seconds
 
 		self.setPath(None)
-		self.setCheckTimeInterval( 20 )
+		self.setCheckTimeInterval( 5 )
 
 	# set value for path, address of folder where are files expected to be
 	def setPath( self, path : str ):
@@ -36,9 +36,14 @@ class FileCheck:
 	def mainLoop( self ):
 		
 		self.currentFileName : str = '' 
+		self.noFileCheck : int = 0
+		
+		print( 'loop starts' )
 		
 		while self.controlFlag:
-			print( 'loop starts' )
+			
+			if self.noFileCheck == 5:				
+				break
 			
 			#check for file in folder
 			self.filesList = os.listdir( self.path )
@@ -53,10 +58,10 @@ class FileCheck:
 					self.currentFileName = str( self.filesList[0] )	
 					
 					#init class for processing file
-					fp = FileProcess.FileProcess( self.path, self.currentFileName )
+					self.fp = FileProcess.FileProcess( self.path, self.currentFileName )
 
 					#start processing of files one by one
-					fp.processFile()
+					self.fp.processFile()
 					
 				except Exception as e:
 					print( e )
@@ -66,6 +71,11 @@ class FileCheck:
 				
 				self.filesList.remove( self.currentFileName )
 			else:
-				print("Nema fajlova za obradu.")	
+				self.noFileCheck += 1
+				print("Nema fajlova za obradu. noFileCheck=" + str(self.noFileCheck) )	
+				
+				FileProcess.FileProcess.getBackProcessedFile
+				
 				
 			time.sleep( self.checkTimeInterval )
+		print('Obrada zavrsena. ')

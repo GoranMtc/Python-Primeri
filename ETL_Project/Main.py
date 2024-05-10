@@ -1,10 +1,12 @@
 import FileCheck as FileCheck
+from Logger import Logger
 			
 # class for starting process		
 class Main:
 		
 	def __init__( self  ):
- 		#logovanje inicijalizacije fajla
+		self.log = Logger()
+		self.log.Log('Main - Init')
 		pass		
 		
 	def main( self ):
@@ -14,4 +16,5 @@ class Main:
 	
 main = Main()	
 main.main()
+
 

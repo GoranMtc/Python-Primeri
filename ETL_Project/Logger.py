@@ -4,7 +4,7 @@ from datetime import datetime
 class Logger:
 	
 	_logfile = None
-	_printLog = 0
+	_printLog : int= 1
 	
 	# singleton
 	def __new__(cls, *args, **kwargs):
@@ -20,7 +20,7 @@ class Logger:
 		self._logfile = open( 'log_'+formatted_date+'.txt', 'a')
 	
 	# Log text into file
-	def Log( self, text ):	
+	def Log( self, text : str ):	
 		if self._printLog == 1:
 			print( '=> Log='+ text )
 		
@@ -37,6 +37,12 @@ if __name__ == "__main__":
 	
 	log = Logger()
 	log.Log('123')
+	print( 'id=' + str(id(log)) )
 	log.CloseLog
+
+	log1 = Logger()
+	print( 'id=' + str(id(log1)) )	
+	log1.Log('456')
+	log1.CloseLog	
 
 
