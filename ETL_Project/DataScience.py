@@ -35,7 +35,7 @@ class DataScience():
 		#da se kroz fajl proslede imena user-a i privilegija za user-e i dinamicki izvrti
 		#da se uradi automatsko razmotavanje baze
 		#da se u toku obrade prikazuje vrteci znak [ / -- | \ -- ...]
-        #da posalje mail kada se obrada zavrsi
+        	#da posalje mail kada se obrada zavrsi
 		
 		
 	#	

@@ -10,78 +10,67 @@ from os.path import exists
 import connect as connection
 from Logger import Logger
 
-class file_reader():
+class DataBaseUtil():
 	
 	# init
-	def __init__(self, path_to_file):
-		print( '=> file_reader init' )
-		self.path_to_file = path_to_file
-		print( '=>' + self.path_to_file )
+	def __init__( self, df : DataFrame ):
 		self.log = Logger()
-		self.log.Log( "=> file_reader Init" )
-
-	# procitaj fajl
-	def read_csv_file(self):
-		#print( '=> read_csv_file' )
-		self.log.Log( "=> read_csv_file" )
-
-		self.file_exists = exists( self.path_to_file )
-
-		if ( self.file_exists ):
-			self.df = pd.read_csv( self.path_to_file )
-			#print( '=> postoji fajl' )
-			self.log.Log( "=> postoji fajl" ) 
-		else:
-			#print( '=> ne postoji fajl' )
-			self.log.Log( "=> ne postoji fajl" )
+		self.log.Log("=> DataBaseUtil-Init")
+		self.df = df
         
-        # lista kolona
-	def get_file_columns(self):
-		self.log.Log( "=> get_file_columns" )
+    # lista kolona
+	def getFileColumns( self ):
+		self.log.Log( "getFileColumns" )
 		self.columns = list( self.df.columns.values )
 
 	# kreiraj sql za tabelu
-	def create_dml(self):
-		self.log.Log( "=> create_dml" )
+	def createDml( self ):
+		self.log.Log( "createDml" )
 
 		self.read_csv_file()
-		self.get_file_columns()
+		columns = self.columns
 
 		sql = 'Create+table+if+not+exists+food_orders'
 		sql = sql + '('
 
-		for column in self.columns:
+		for column in columns:
 			column = column.strip()
 			sql = sql +',+'+ column +'+char(100)'		
 
 		sql = sql + ')'
 		sql = sql.lower()
 		sql = sql.replace('/','_').replace(' ','_').replace('+',' ').replace('(,','(')
-		self.sql = sql  #print( self.sql )
-		
-	#kreiraj tabelu
-	def create_table(self):
-		self.log.Log( '=> create_table' )
-		
+		self.sql = sql
+
+	# kreiraj tabelu
+	def createTable( self, dml ):
+		self.log.Log( 'createTable' )
+
+		#create connection		
 		dbc = connection.db_connection()
 		dbc.create_connection()
 		self.conn = dbc.get_connection()
-		
+
+		#cursor
 		self.cur = self.conn.cursor() 
 
+		#execute statement
 		try:
 			self.cur.execute( self.sql )
 
 		except Exception as e:
 			print( e )
+
 		else:
 			self.conn.commit()
 			self.cur.close()
 			self.conn.close()
-
-	def __del__(self):
+	"""
+	# del
+	def __del__( self ):
 		print( '=> __del__' )
 		self.log.CloseLog
+	"""
 		
 
 
