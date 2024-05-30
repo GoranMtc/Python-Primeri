@@ -21,6 +21,7 @@ sum = float(number1) + float(number2)
 # will print value in float 
 print("The sum of {0} and {1} is {2}" .format(number1, number2, sum)) 
 
+
 #-------------------------------------------------------------------------------Da li je broj negativan ili pozitivan
 num = float(input("Upisi broj: "))
 
@@ -31,4 +32,20 @@ elif num == 0:
 else:
    print("Negative number")
 
-----------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------- import, try, except, ImportError
+try:
+    from scipy.datasets import face
+
+except ImportError:  # Data was in scipy.misc prior to scipy v1.10
+    from scipy.misc import face
+
+
+-------------------------------------------------------------------------------- 
+
+
+
+
+
+
+
